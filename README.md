@@ -5,7 +5,7 @@ A partial rebuild of https://github.com/madbook/seline to run in deno.
 Can be installed by running
 
 ```
-deno install --allow-write=/dev/tty --allow-read=/dev/tty --allow-run --allow-env --unstable https://github.com/madbook/slid/blob/master/slid.ts
+deno install --allow-write=/dev/tty --allow-read=/dev/tty --allow-run --allow-env --unstable https://raw.githubusercontent.com/madbook/slid/master/slid.ts
 ```
 
 * `--allow-write=/dev/tty --allow-read=/dev/tty` to allow reading/writing from the `/dev/tty`
