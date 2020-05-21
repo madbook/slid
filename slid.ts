@@ -84,7 +84,7 @@ async function getTtySize() {
     { cmd: ["stty", "size"], stdin: tty.rid, stdout: "piped" },
   );
   const size: string = decoder.decode(await sttyProc.output());
-  const [rows, cols] = size.split("-").map((n) => parseInt(n, 10));
+  const [rows, cols] = size.split(" ").map((n) => parseInt(n, 10));
   ttyRows = rows;
   ttyCols = cols;
 }
@@ -112,7 +112,7 @@ async function saveCursor() {
 }
 
 function getCols(): number {
-  return ttyRows;
+  return ttyCols;
 }
 
 function getRows(): number {
