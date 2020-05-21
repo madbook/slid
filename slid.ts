@@ -31,6 +31,8 @@ Options:
   -h, --help            output help
   -m, --multiline       enable multiple line selection
   -p, --preserve-order  output lines in order of selection
+  -n, --number-lines    prefix lines with numbers
+
 Controls:
   up                    move cursor up
   down                  move cursor down
@@ -238,8 +240,11 @@ function formatLine(line: string, index: number): string {
     const order = selectionOrder.get(i);
     line = `(${order}) ${line}`;
   }
-  if (!args.hideNumbers) {
-    line = `${i}: ${line}`;
+  if (args["number-lines"] || args.n) {
+    const iStr = i.toString();
+    const maxNum = choices.length.toString().length;
+    const padLeft = " ".repeat(maxNum - iStr.length);
+    line = `${padLeft}${iStr}: ${line}`;
   }
 
   const padding = getCols() - (line.length + styles.length);
