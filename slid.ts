@@ -297,10 +297,13 @@ function getInputAction(): string | void {
 //
 // Main
 //
-await writeScreen();
-await scrollCursorUp(choices.length);
-await saveCursor();
-await scrollCursorDown(choices.length);
+{
+  const numRowsOnScreen = Math.min(getRows(), choices.length);
+  await writeScreen();
+  await scrollCursorUp(numRowsOnScreen);
+  await saveCursor();
+  await scrollCursorDown(numRowsOnScreen);
+}
 
 while (await tty.read(inputBuffer)) {
   const action = getInputAction();
