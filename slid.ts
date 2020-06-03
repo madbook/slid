@@ -367,7 +367,7 @@ async function finish() {
     return selectionOrder.get(a)! - selectionOrder.get(b)!;
   });
   const lines = selectedIndices.map((i) => choices[i]);
-  await Deno.stdout.write(encoder.encode(lines.join("\n")));
+  await Deno.stdout.write(encoder.encode(lines.join("\n") + "\n"));
   tty.close();
   Deno.exit();
 }
