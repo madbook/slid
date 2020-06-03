@@ -124,7 +124,9 @@ function getRows(): number {
 // and some functions to manipulate that state.
 //
 const stdInContent = await Deno.readAll(Deno.stdin);
-const choices = decoder.decode(stdInContent).trim().split("\n");
+const choices = decoder.decode(stdInContent).trim().split("\n").map((l) =>
+  l.trim()
+);
 const selected = new Set<number>();
 const selectionOrder = new Map<number, number>();
 let rowOffset = 0;
