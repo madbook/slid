@@ -314,6 +314,7 @@ while (await tty.read(inputBuffer)) {
     switch (action) {
       case "q":
       case "quit": {
+        Deno.setRaw(tty.rid, false);
         tty.close();
         Deno.exit();
       }
@@ -370,6 +371,7 @@ async function finish() {
   });
   const lines = selectedIndices.map((i) => choices[i]);
   await Deno.stdout.write(encoder.encode(lines.join("\n") + "\n"));
+  Deno.setRaw(tty.rid, false);
   tty.close();
   Deno.exit();
 }
